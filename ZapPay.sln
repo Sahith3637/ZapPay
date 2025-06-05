@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.API", "ZapPay.API\ZapPay.API.csproj", "{D8B2A157-F249-4DFB-8901-9BB010EA2E3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Application", "ZapPay.Application\ZapPay.Application.csproj", "{3DDABF7A-AC28-4750-B2E0-3A73BD132809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Domain", "ZapPay.Domain\ZapPay.Domain.csproj", "{284BB8DC-024F-482A-8AB9-83ED90190BA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Infrastructure", "ZapPay.Infrastructure\ZapPay.Infrastructure.csproj", "{C4827381-34EB-4021-9222-C534A99AE83A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Persistence", "ZapPay.Persistence\ZapPay.Persistence.csproj", "{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Utills", "ZapPay.Utills\ZapPay.Utills.csproj", "{BC08A634-C48B-49B9-B86C-729E61BF03D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8B2A157-F249-4DFB-8901-9BB010EA2E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B2A157-F249-4DFB-8901-9BB010EA2E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B2A157-F249-4DFB-8901-9BB010EA2E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B2A157-F249-4DFB-8901-9BB010EA2E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DDABF7A-AC28-4750-B2E0-3A73BD132809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DDABF7A-AC28-4750-B2E0-3A73BD132809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DDABF7A-AC28-4750-B2E0-3A73BD132809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DDABF7A-AC28-4750-B2E0-3A73BD132809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{284BB8DC-024F-482A-8AB9-83ED90190BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284BB8DC-024F-482A-8AB9-83ED90190BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284BB8DC-024F-482A-8AB9-83ED90190BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284BB8DC-024F-482A-8AB9-83ED90190BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4827381-34EB-4021-9222-C534A99AE83A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4827381-34EB-4021-9222-C534A99AE83A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4827381-34EB-4021-9222-C534A99AE83A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4827381-34EB-4021-9222-C534A99AE83A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C358A8BE-5905-43D5-BA9B-817C5312E252}
+	EndGlobalSection
+EndGlobal

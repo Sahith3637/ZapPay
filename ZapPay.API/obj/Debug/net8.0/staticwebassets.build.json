@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "qSPK/vxNQaY4lcqKFIlxArJxpS3mILOVF6KW5r2f+i4=",
+  "Source": "ZapPay.API",
+  "BasePath": "_content/ZapPay.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

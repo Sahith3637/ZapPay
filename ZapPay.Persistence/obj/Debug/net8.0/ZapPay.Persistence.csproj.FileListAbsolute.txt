@@ -1,0 +1,17 @@
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\bin\Debug\net8.0\ZapPay.Persistence.deps.json
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\bin\Debug\net8.0\ZapPay.Persistence.runtimeconfig.json
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\bin\Debug\net8.0\ZapPay.Persistence.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\bin\Debug\net8.0\ZapPay.Persistence.pdb
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\bin\Debug\net8.0\ZapPay.Domain.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\bin\Debug\net8.0\ZapPay.Domain.pdb
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.csproj.AssemblyReference.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.AssemblyInfoInputs.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.AssemblyInfo.cs
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.csproj.CoreCompileInputs.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.P.86E11AFE.Up2Date
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\refint\ZapPay.Persistence.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.pdb
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ZapPay.Persistence.genruntimeconfig.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Persistence\obj\Debug\net8.0\ref\ZapPay.Persistence.dll

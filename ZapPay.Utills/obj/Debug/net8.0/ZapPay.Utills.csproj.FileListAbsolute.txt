@@ -1,0 +1,14 @@
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\bin\Debug\net8.0\ZapPay.Utills.deps.json
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\bin\Debug\net8.0\ZapPay.Utills.runtimeconfig.json
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\bin\Debug\net8.0\ZapPay.Utills.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\bin\Debug\net8.0\ZapPay.Utills.pdb
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.csproj.AssemblyReference.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.GeneratedMSBuildEditorConfig.editorconfig
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.AssemblyInfoInputs.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.AssemblyInfo.cs
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.csproj.CoreCompileInputs.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\refint\ZapPay.Utills.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.pdb
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.genruntimeconfig.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ref\ZapPay.Utills.dll

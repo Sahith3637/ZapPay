@@ -1,0 +1,14 @@
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\bin\Debug\net8.0\ZapPay.Domain.deps.json
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\bin\Debug\net8.0\ZapPay.Domain.runtimeconfig.json
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\bin\Debug\net8.0\ZapPay.Domain.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\bin\Debug\net8.0\ZapPay.Domain.pdb
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.csproj.AssemblyReference.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.AssemblyInfoInputs.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.AssemblyInfo.cs
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.csproj.CoreCompileInputs.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\refint\ZapPay.Domain.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.pdb
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.genruntimeconfig.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ref\ZapPay.Domain.dll
