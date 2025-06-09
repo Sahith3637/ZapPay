@@ -12,3 +12,4 @@ C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\refin
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.pdb
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.genruntimeconfig.cache
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ref\ZapPay.Domain.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Domain\obj\Debug\net8.0\ZapPay.Domain.sourcelink.json

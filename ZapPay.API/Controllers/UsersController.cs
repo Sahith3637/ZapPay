@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using ZapPay.Application.DTOs;
 using ZapPay.Application.Interfaces;
 using ZapPay.Infrastructure.Interfaces;
+using System.Security.Claims;
+using Serilog;
+using FluentValidation;
+  using AutoMapper;
 
 namespace ZapPay.API.Controllers;
 
@@ -9,11 +13,13 @@ namespace ZapPay.API.Controllers;
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
-    private readonly IUserService _userService;
+    private readonly IUserService _userService;  
+    private readonly IMapper _mapper;
 
-    public UsersController(IUserService userService)
+    public UsersController(IUserService userService, IMapper mapper)
     {
         _userService = userService;
+        _mapper = mapper;
     }
 
     [HttpPost("register")]
@@ -100,5 +106,81 @@ public class UsersController : ControllerBase
         var fileName = Path.GetFileName(kyc.DocumentFilePath);
         var contentType = "application/octet-stream";
         return File(fileBytes, contentType, fileName);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllUsers()
+    {
+        var users = await _userService.GetAllUsersAsync();
+        return Ok(users);
+    }
+
+    [HttpGet("admin/kyc")]
+    public async Task<IActionResult> GetAllKyc()
+    {
+        var kycs = await _userService.GetAllKycAsync();
+        return Ok(kycs);
+    }
+
+    [HttpPut("profile")]
+    public async Task<ActionResult<UserProfileResponseDto>> UpdateProfile([FromBody] UpdateProfileDto dto)
+    {
+        try
+        {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out var userId))
+                return Unauthorized();
+
+            var updatedUser = await _userService.UpdateProfileAsync(userId, dto);
+            var responseDto = _mapper.Map<UserProfileResponseDto>(updatedUser);
+            return Ok(responseDto);
+        }
+        catch (KeyNotFoundException ex)
+        {
+            Serilog.Log.Warning(ex, "User not found during profile update");
+            return NotFound(new { message = ex.Message });
+        }
+        catch (ValidationException ex)
+        {
+            Serilog.Log.Warning(ex, "Validation failed during profile update");
+            return BadRequest(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            Serilog.Log.Error(ex, "Error updating user profile");
+            return StatusCode(500, new { message = ex.Message, stackTrace = ex.StackTrace });
+        }
+    }
+
+    [HttpPut("profile/{userId}")]
+    public async Task<ActionResult<UserProfileResponseDto>> UpdateProfileById(Guid userId, [FromBody] UpdateProfileDto dto)
+    {
+        try
+        {
+            // Optional: Only allow self or admin
+            var jwtUserId = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            var isAdmin = User.Claims.Any(c => c.Type == System.Security.Claims.ClaimTypes.Role && c.Value == "Admin");
+            if (!isAdmin && (jwtUserId == null || jwtUserId != userId.ToString()))
+                return Forbid();
+
+            var updatedUser = await _userService.UpdateProfileAsync(userId, dto);
+            var responseDto = _mapper.Map<UserProfileResponseDto>(updatedUser);
+            return Ok(responseDto);
+        }
+        catch (KeyNotFoundException ex)
+        {
+            Serilog.Log.Warning(ex, "User not found during profile update by ID");
+            return NotFound(new { message = ex.Message });
+        }
+        catch (ValidationException ex)
+        {
+            Serilog.Log.Warning(ex, "Validation failed during profile update by ID");
+            return BadRequest(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            Serilog.Log.Error(ex, "Error updating user profile by ID");
+            return StatusCode(500, new { message = "An error occurred while updating the profile" });
+        }
     }
 } 

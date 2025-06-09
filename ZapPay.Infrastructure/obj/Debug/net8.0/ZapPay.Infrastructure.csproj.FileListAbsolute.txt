@@ -15,3 +15,4 @@ C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Infrastructure\obj\Debug\net8
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Infrastructure\obj\Debug\net8.0\refint\ZapPay.Infrastructure.dll
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Infrastructure\obj\Debug\net8.0\ZapPay.Infrastructure.pdb
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Infrastructure\obj\Debug\net8.0\ref\ZapPay.Infrastructure.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Infrastructure\obj\Debug\net8.0\ZapPay.Infrastructure.sourcelink.json

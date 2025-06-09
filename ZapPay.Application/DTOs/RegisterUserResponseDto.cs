@@ -12,4 +12,5 @@ public class RegisterUserResponseDto
     public string KYCStatus { get; set; } = null!;
     public string? KYCVerificationRemarks { get; set; }
     public DateTime CreatedAt { get; set; }
+    public string? Vpa { get; set; }
 } 

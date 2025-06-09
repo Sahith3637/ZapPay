@@ -17,3 +17,4 @@ C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Application\obj\Debug\net8.0\
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Application\obj\Debug\net8.0\refint\ZapPay.Application.dll
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Application\obj\Debug\net8.0\ZapPay.Application.pdb
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Application\obj\Debug\net8.0\ref\ZapPay.Application.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Application\obj\Debug\net8.0\ZapPay.Application.sourcelink.json

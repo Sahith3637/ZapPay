@@ -7,6 +7,7 @@ C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPa
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.AssemblyInfoInputs.cache
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.AssemblyInfo.cs
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.csproj.CoreCompileInputs.cache
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.sourcelink.json
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.dll
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\refint\ZapPay.Utills.dll
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.Utills\obj\Debug\net8.0\ZapPay.Utills.pdb

@@ -5,6 +5,7 @@ using ZapPay.Domain.Entities;
 using ZapPay.Infrastructure.Interfaces;
 using ZapPay.Persistence.Interfaces;
 using BCrypt.Net;
+using Serilog;
 
 namespace ZapPay.Application.Services;
 
@@ -15,17 +16,23 @@ public class UserService : IUserService
     private readonly IAuditLogService _auditLogService;
     private readonly IMapper _mapper;
     private readonly Guid _systemUserId = Guid.Parse("00000000-0000-0000-0000-000000000001");
+    private readonly IVpaGeneratorService _vpaGeneratorService;
+    private readonly IVpaRepository _vpaRepository;
 
     public UserService(
         IUserRepository userRepository,
         IKycRepository kycRepository,
         IAuditLogService auditLogService,
-        IMapper mapper)
+        IMapper mapper,
+        IVpaGeneratorService vpaGeneratorService,
+        IVpaRepository vpaRepository)
     {
         _userRepository = userRepository;
         _kycRepository = kycRepository;
         _auditLogService = auditLogService;
         _mapper = mapper;
+        _vpaGeneratorService = vpaGeneratorService;
+        _vpaRepository = vpaRepository;
     }
 
     public async Task<RegisterUserResponseDto> RegisterUserAsync(RegisterUserRequestDto request)
@@ -57,6 +64,32 @@ public class UserService : IUserService
         await _userRepository.AddAsync(user);
         await _userRepository.SaveChangesAsync();
 
+        try
+        {
+            Log.Information($"Attempting to generate VPA for user {user.UserId} ({user.MobileNumber})");
+            var vpaValue = await _vpaGeneratorService.GenerateUniqueVpaAsync(user.MobileNumber);
+            Log.Information($"Generated VPA: {vpaValue}");
+            var vpa = new VirtualPaymentAddress {
+                UserId = user.UserId,
+                Vpa = vpaValue,
+                CreatedAt = DateTime.UtcNow,
+                Status = "Active",
+                CreatedBy = _systemUserId,
+                UpdatedAt = DateTime.UtcNow,
+                UpdatedBy = _systemUserId
+            };
+            await _vpaRepository.AddVpaAsync(vpa);
+            Log.Information($"Saved VPA to database for user {user.UserId}");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, $"Failed to create VPA for user {user.UserId}");
+            throw;
+        }
+
+        // Reload user with VPA navigation property
+        var userWithVpa = await _userRepository.GetByIdAsync(user.UserId, includeVpa: true);
+
         // Log the registration
         await _auditLogService.LogAsync(
             user.UserId,
@@ -64,9 +97,9 @@ public class UserService : IUserService
             "User",
             user.UserId,
             null,
-            $"User registered with mobile: {user.MobileNumber}");
+            $"User registered with mobile: {user.MobileNumber}, VPA: {userWithVpa?.VirtualPaymentAddresses?.FirstOrDefault()?.Vpa}");
 
-        return _mapper.Map<RegisterUserResponseDto>(user);
+        return _mapper.Map<RegisterUserResponseDto>(userWithVpa);
     }
 
     public async Task<RegisterUserResponseDto> VerifyKycAsync(Guid userId, string verificationStatus, string? verificationRemarks)
@@ -192,5 +225,79 @@ public class UserService : IUserService
     public async Task<UserKyc?> GetKycByIdAsync(Guid kycId)
     {
         return (await _kycRepository.FindAsync(k => k.Kycid == kycId && !k.IsDeleted)).FirstOrDefault();
+    }
+
+    public async Task<IEnumerable<User>> GetAllUsersAsync()
+    {
+        return await _userRepository.FindAsync(u => !u.IsDeleted);
+    }
+
+    public async Task<IEnumerable<UserKyc>> GetAllKycAsync()
+    {
+        return await _kycRepository.FindAsync(k => !k.IsDeleted);
+    }
+
+    public async Task<User> UpdateProfileAsync(Guid userId, UpdateProfileDto dto)
+    {
+        var user = await _userRepository.GetByIdAsync(userId);
+        if (user == null)
+            throw new KeyNotFoundException("User not found");
+
+        var oldUser = new User
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email
+        };
+
+        user.FirstName = dto.FirstName;
+        user.LastName = dto.LastName;
+        user.Email = dto.Email;
+        user.UpdatedAt = DateTime.UtcNow;
+        user.UpdatedBy = _systemUserId;
+
+        await _userRepository.UpdateAsync(user);
+        await _userRepository.SaveChangesAsync();
+
+        // Audit log: log old vs new data
+        await _auditLogService.LogAsync(
+            userId,
+            "UpdateProfile",
+            "User",
+            user.UserId,
+            $"FirstName: {oldUser.FirstName}, LastName: {oldUser.LastName}, Email: {oldUser.Email}",
+            $"FirstName: {user.FirstName}, LastName: {user.LastName}, Email: {user.Email}");
+
+        return user;
+    }
+
+    public async Task AssignVpaToUsersWithoutOneAsync()
+    {
+        var users = await _userRepository.FindAsync(u => !u.IsDeleted);
+        foreach (var user in users)
+        {
+            var hasVpa = await _vpaRepository.GetByVpaAsync(user.MobileNumber + "@upi");
+            if (hasVpa == null)
+            {
+                var vpaValue = await _vpaGeneratorService.GenerateUniqueVpaAsync(user.MobileNumber);
+                var vpa = new VirtualPaymentAddress {
+                    UserId = user.UserId,
+                    Vpa = vpaValue,
+                    CreatedAt = DateTime.UtcNow,
+                    Status = "Active",
+                    CreatedBy = _systemUserId,
+                    UpdatedAt = DateTime.UtcNow,
+                    UpdatedBy = _systemUserId
+                };
+                await _vpaRepository.AddVpaAsync(vpa);
+                await _auditLogService.LogAsync(
+                    user.UserId,
+                    "AssignVPA",
+                    "User",
+                    user.UserId,
+                    null,
+                    $"Assigned VPA: {vpaValue}");
+            }
+        }
     }
 } 

@@ -62,7 +62,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[14.0.0, )"
+              "version": "[12.0.1, )"
             },
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -70,7 +70,19 @@
             },
             "FluentValidation": {
               "target": "Package",
-              "version": "[12.0.0, )"
+              "version": "[11.9.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[4.2.0, )"
             }
           },
           "imports": [

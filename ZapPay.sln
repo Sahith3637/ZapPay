@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.API", "ZapPay.API\ZapPay.API.csproj", "{D8B2A157-F249-4DFB-8901-9BB010EA2E3B}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Infrastructure", "Za
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Persistence", "ZapPay.Persistence\ZapPay.Persistence.csproj", "{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Utills", "ZapPay.Utills\ZapPay.Utills.csproj", "{BC08A634-C48B-49B9-B86C-729E61BF03D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZapPay.Utills", "ZapPay.Utills\ZapPay.Utills.csproj", "{FA9619EA-B28E-4047-AB74-9D03B98B5A1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A2CEA2E-8758-4F9E-9C19-6A36E18A67C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC08A634-C48B-49B9-B86C-729E61BF03D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA9619EA-B28E-4047-AB74-9D03B98B5A1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA9619EA-B28E-4047-AB74-9D03B98B5A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA9619EA-B28E-4047-AB74-9D03B98B5A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA9619EA-B28E-4047-AB74-9D03B98B5A1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

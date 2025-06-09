@@ -96,6 +96,9 @@ namespace ZapPay.Persistence.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("BankName")
                         .IsRequired()
                         .HasMaxLength(100)
