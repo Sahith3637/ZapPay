@@ -28,10 +28,10 @@ public class AuthController : ControllerBase
     [HttpPost("verify-otp")]
     public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpRequestDto request)
     {
-        var (success, message, token) = await _otpService.VerifyOtpAsync(request);
+        var (success, message, token, user) = await _otpService.VerifyOtpAsync(request);
         if (!success)
             return BadRequest(new { message });
 
-        return Ok(new { message, token });
+        return Ok(new { message, token, user });
     }
 } 

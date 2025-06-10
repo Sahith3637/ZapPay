@@ -6,6 +6,7 @@ using System.Security.Claims;
 using Serilog;
 using FluentValidation;
   using AutoMapper;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace ZapPay.API.Controllers;
 
@@ -96,17 +97,25 @@ public class UsersController : ControllerBase
 
     [HttpGet("admin/kyc/{kycId}/download")]
     public async Task<IActionResult> DownloadKycDocument(Guid kycId)
-    {
-        // Assume you have a repository or service to get the KYC record
-        var kyc = (await _userService.GetKycByIdAsync(kycId));
-        if (kyc == null || string.IsNullOrEmpty(kyc.DocumentFilePath) || !System.IO.File.Exists(kyc.DocumentFilePath))
-            return NotFound("KYC document not found.");
+{
+    var kyc = await _userService.GetKycByIdAsync(kycId);
+    if (kyc == null || string.IsNullOrEmpty(kyc.DocumentFilePath) || !System.IO.File.Exists(kyc.DocumentFilePath))
+        return NotFound("KYC document not found.");
 
-        var fileBytes = await System.IO.File.ReadAllBytesAsync(kyc.DocumentFilePath);
-        var fileName = Path.GetFileName(kyc.DocumentFilePath);
-        var contentType = "application/octet-stream";
-        return File(fileBytes, contentType, fileName);
+    var fileBytes = await System.IO.File.ReadAllBytesAsync(kyc.DocumentFilePath);
+    var fileName = Path.GetFileName(kyc.DocumentFilePath);
+
+    // Determine correct content-type
+    var provider = new FileExtensionContentTypeProvider();
+    string contentType;
+
+    if (!provider.TryGetContentType(fileName, out contentType))
+    {
+        contentType = "application/octet-stream"; // fallback
     }
+
+    return File(fileBytes, contentType, fileName);
+}
 
     [HttpGet]
     public async Task<IActionResult> GetAllUsers()

@@ -10,6 +10,8 @@ using ZapPay.Domain.Entities;
 using ZapPay.Infrastructure.Configuration;
 using ZapPay.Infrastructure.Interfaces;
 using ZapPay.Persistence.Interfaces;
+using AutoMapper;
+using ZapPay.Application.DTOs;
 
 namespace ZapPay.Application.Services;
 
@@ -25,19 +27,22 @@ public class OtpService : IOtpService
     private const int MaxOtpAttempts = 3;
     private const int RateLimitWindowMinutes = 10;
     private const int OtpExpiryMinutes = 5;
+    private readonly IMapper _mapper;
 
     public OtpService(
         IUserRepository userRepository,
         IGenericRepository<Otpverification> otpRepository,
         IAuditLogService auditLogService,
         IMemoryCache cache,
-        IOptions<JwtSettings> jwtSettings)
+        IOptions<JwtSettings> jwtSettings,
+        IMapper mapper)
     {
         _userRepository = userRepository;
         _otpRepository = otpRepository;
         _auditLogService = auditLogService;
         _cache = cache;
         _jwtSettings = jwtSettings.Value;
+        _mapper = mapper;
     }
 
     public async Task<(bool success, string message)> SendOtpAsync(SendOtpRequestDto request)
@@ -97,13 +102,13 @@ public class OtpService : IOtpService
         return (true, "OTP sent successfully.");
     }
 
-    public async Task<(bool success, string message, string? token)> VerifyOtpAsync(VerifyOtpRequestDto request)
+    public async Task<(bool success, string message, string? token, RegisterUserResponseDto? user)> VerifyOtpAsync(VerifyOtpRequestDto request)
     {
         // Get user
         var user = await _userRepository.GetByMobileNumberAsync(request.MobileNumber);
         if (user == null)
         {
-            return (false, "User not found.", null);
+            return (false, "User not found.", null, null);
         }
 
         // Get latest OTP
@@ -117,7 +122,7 @@ public class OtpService : IOtpService
 
         if (otpVerification == null)
         {
-            return (false, "No valid OTP found. Please request a new OTP.", null);
+            return (false, "No valid OTP found. Please request a new OTP.", null, null);
         }
 
         if (otpVerification.Otpvalue != request.Otp)
@@ -131,7 +136,7 @@ public class OtpService : IOtpService
                 "Failed",
                 "Invalid OTP");
 
-            return (false, "Invalid OTP.", null);
+            return (false, "Invalid OTP.", null, null);
         }
 
         // Update OTP status
@@ -155,7 +160,8 @@ public class OtpService : IOtpService
             "Success",
             "OTP verified successfully");
 
-        return (true, "OTP verified successfully.", token);
+        var userDto = _mapper.Map<RegisterUserResponseDto>(user);
+        return (true, "OTP verified successfully.", token, userDto);
     }
 
     private string GenerateOtp()
