@@ -6,6 +6,7 @@ using ZapPay.Infrastructure.Interfaces;
 using ZapPay.Persistence.Interfaces;
 using BCrypt.Net;
 using Serilog;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZapPay.Application.Services;
 
@@ -229,7 +230,39 @@ public class UserService : IUserService
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        return await _userRepository.FindAsync(u => !u.IsDeleted);
+        return await _userRepository.GetAllAsync();
+    }
+
+    public async Task<PaginationDto<User>> GetPaginatedUsersAsync(PaginationParams paginationParams)
+    {
+        try
+        {
+            var query = _userRepository.GetQueryable()
+                .Where(u => !u.IsDeleted)
+                .OrderByDescending(u => u.CreatedAt);
+
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalCount / (double)paginationParams.PageSize);
+
+            var users = await query
+                .Skip((paginationParams.PageNumber - 1) * paginationParams.PageSize)
+                .Take(paginationParams.PageSize)
+                .ToListAsync();
+
+            return new PaginationDto<User>
+            {
+                PageNumber = paginationParams.PageNumber,
+                PageSize = paginationParams.PageSize,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                Items = users
+            };
+        }
+        catch (Exception ex)
+        {
+            Serilog.Log.Error(ex, "Error occurred while getting paginated users");
+            throw new InvalidOperationException("Failed to retrieve paginated users", ex);
+        }
     }
 
     public async Task<IEnumerable<UserKyc>> GetAllKycAsync()

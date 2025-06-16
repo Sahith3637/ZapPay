@@ -1,4 +1,5 @@
 using ZapPay.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZapPay.Persistence.Interfaces;
  
@@ -9,4 +10,5 @@ public interface IUserRepository : IGenericRepository<User>
     Task<User?> GetByMobileNumberAsync(string mobileNumber);
     Task UpdateProfileAsync(Guid userId, string firstName, string lastName, string email);
     Task<User?> GetByIdAsync(Guid userId, bool includeVpa);
+    IQueryable<User> GetQueryable();
 } 

@@ -5,8 +5,9 @@ using ZapPay.Infrastructure.Interfaces;
 using System.Security.Claims;
 using Serilog;
 using FluentValidation;
-  using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.StaticFiles;
+using ZapPay.Domain.Entities;
 
 namespace ZapPay.API.Controllers;
 
@@ -97,31 +98,67 @@ public class UsersController : ControllerBase
 
     [HttpGet("admin/kyc/{kycId}/download")]
     public async Task<IActionResult> DownloadKycDocument(Guid kycId)
-{
-    var kyc = await _userService.GetKycByIdAsync(kycId);
-    if (kyc == null || string.IsNullOrEmpty(kyc.DocumentFilePath) || !System.IO.File.Exists(kyc.DocumentFilePath))
-        return NotFound("KYC document not found.");
-
-    var fileBytes = await System.IO.File.ReadAllBytesAsync(kyc.DocumentFilePath);
-    var fileName = Path.GetFileName(kyc.DocumentFilePath);
-
-    // Determine correct content-type
-    var provider = new FileExtensionContentTypeProvider();
-    string contentType;
-
-    if (!provider.TryGetContentType(fileName, out contentType))
     {
-        contentType = "application/octet-stream"; // fallback
-    }
+        var kyc = await _userService.GetKycByIdAsync(kycId);
+        if (kyc == null || string.IsNullOrEmpty(kyc.DocumentFilePath) || !System.IO.File.Exists(kyc.DocumentFilePath))
+            return NotFound("KYC document not found.");
 
-    return File(fileBytes, contentType, fileName);
-}
+        var fileBytes = await System.IO.File.ReadAllBytesAsync(kyc.DocumentFilePath);
+        var fileName = Path.GetFileName(kyc.DocumentFilePath);
+
+        // Determine correct content-type
+        var provider = new FileExtensionContentTypeProvider();
+        string contentType;
+
+        if (!provider.TryGetContentType(fileName, out contentType))
+        {
+            contentType = "application/octet-stream"; // fallback
+        }
+
+        return File(fileBytes, contentType, fileName);
+    }
 
     [HttpGet]
     public async Task<IActionResult> GetAllUsers()
     {
         var users = await _userService.GetAllUsersAsync();
         return Ok(users);
+    }
+
+    /// <summary>
+    /// Get all users with pagination
+    /// </summary>
+    /// <param name="paginationParams">Pagination parameters (pageNumber and pageSize)</param>
+    /// <returns>Paginated list of users</returns>
+    /// <response code="200">Returns the paginated list of users</response>
+    /// <response code="400">If the pagination parameters are invalid</response>
+    /// <response code="500">If there was an internal server error</response>
+    [HttpGet("paginated")]
+    [ProducesResponseType(typeof(PaginationDto<User>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetPaginatedUsers([FromQuery] PaginationParams paginationParams)
+    {
+        try
+        {
+            if (paginationParams.PageSize <= 0 || paginationParams.PageNumber <= 0)
+            {
+                return BadRequest(new { message = "Invalid pagination parameters" });
+            }
+
+            var result = await _userService.GetPaginatedUsersAsync(paginationParams);
+            return Ok(result);
+        }
+        catch (InvalidOperationException ex)
+        {
+            Serilog.Log.Error(ex, "Error getting paginated users");
+            return StatusCode(500, new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            Serilog.Log.Error(ex, "Unexpected error getting paginated users");
+            return StatusCode(500, new { message = "An unexpected error occurred while fetching users" });
+        }
     }
 
     [HttpGet("admin/kyc")]

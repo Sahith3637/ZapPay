@@ -180,3 +180,4 @@ C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.API\bin\Debug\net8.0\runtimes
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Applications\ZapPay\ZapPayBackend\ZapPay\ZapPay.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZapPay.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b8644c4f3bbf5410774dcf3a1b799a90376665b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+afe1c0ba4321b14d02ddc498ef0c99da833e6b5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZapPay.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZapPay.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -54,4 +54,9 @@ public class UserRepository : GenericRepository<User>, IUserRepository
                 .FirstOrDefaultAsync(u => u.UserId == userId && !u.IsDeleted);
         }
     }
+
+    public IQueryable<User> GetQueryable()
+    {
+        return _context.Users.AsQueryable();
+    }
 } 

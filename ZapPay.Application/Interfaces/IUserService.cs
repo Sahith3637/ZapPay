@@ -11,6 +11,7 @@ public interface IUserService
     Task AddKycWithFileAsync(Guid userId, AddKycWithFileRequestDto request, string filePath);
     Task<UserKyc?> GetKycByIdAsync(Guid kycId);
     Task<IEnumerable<User>> GetAllUsersAsync();
+    Task<PaginationDto<User>> GetPaginatedUsersAsync(PaginationParams paginationParams);
     Task<IEnumerable<UserKyc>> GetAllKycAsync();
     Task<User> UpdateProfileAsync(Guid userId, UpdateProfileDto dto);
 } 
